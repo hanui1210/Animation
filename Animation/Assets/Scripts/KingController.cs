@@ -8,10 +8,13 @@ public class KingController : MonoBehaviour
     public Animator animator;
     public Rigidbody2D rb2D;
     public float move;
-    
-    void Start()
+    public float time;
+    public float attacktime = 5f;
+    public State state;
+
+    public enum State
     {
-        
+        Move,Stop
     }
 
     // Update is called once per frame
@@ -39,18 +42,16 @@ public class KingController : MonoBehaviour
         if (h == 0f)
         {
             // ∏ÿ√Á¿÷¿Ω
-
-            this.rb2D.AddForce(new Vector2(1 * move, 0));
+            Vector2 direction = new Vector2(-0.1f, 0);
+            this.transform.Translate(h * direction, 0);
             animator.SetInteger("state", 0);
             KingAttack();
-
-
         }
         else
 
         {
-
-            this.rb2D.AddForce(new Vector2(-1 * move, 0));
+            Vector2 direction = new Vector2(0.1f, 0);
+            this.transform.Translate(h * direction, 0);
             this.transform.localScale = new Vector3(h, 1, 1);
             animator.SetInteger("state", 1);
             Vector2 velocity = new Vector2(h * 1, 0);
@@ -69,12 +70,30 @@ public class KingController : MonoBehaviour
     }
     public void KingAttack()
     {
-            bool isAttack = Input.GetKeyDown(KeyCode.Return);
-        if (isAttack)
+        
+         bool isAttack = Input.GetKeyDown(KeyCode.Return);
+        
+                
+        if (isAttack) 
         {
+            
             animator.SetInteger("state", 2);
             Debug.Log("∞¯∞›¿Ã ≥°≥µΩ¿¥œ¥Ÿ");
+            Action();
+
+            
         }
 
     }
+    public void Action()
+    {
+        if (state == State.Move)
+        {
+            this.transform.localPosition = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y, this.transform.localPosition.z);
+            float xPos = Mathf.Clamp(this.transform.localPosition.x, this.transform.localPosition.y, this.transform.localPosition.z);
+            //this.transform.position = new Vector3(xPos, this.transform.position.y, this.transform.position.z);
+            state = State.Stop;
+        }
+    }
+    
 }

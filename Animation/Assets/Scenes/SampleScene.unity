@@ -157,7 +157,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 358269918}
   rb2D: {fileID: 358269921}
-  move: 5
+  move: 0.1
+  time: 0
+  attacktime: 2
+  state: 0
 --- !u!95 &358269918
 Animator:
   serializedVersion: 5
