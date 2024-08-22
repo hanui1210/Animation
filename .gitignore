@@ -2,13 +2,13 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/[Ll]ogs/
-/[Uu]ser[Ss]ettings/
+Animation/[Ll]ibrary/
+Animation/[Tt]emp/
+Animation/[Oo]bj/
+Animation/[Bb]uild/
+Animation/[Bb]uilds/
+Animation/[Ll]ogs/
+Animation/[Uu]ser[Ss]ettings/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
@@ -46,6 +46,7 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
+*.vsConfig
 
 # Unity3D generated meta files
 *.pidb.meta
