@@ -7,93 +7,69 @@ public class KingController : MonoBehaviour
 {
     public Animator animator;
     public Rigidbody2D rb2D;
-    public float move;
-    public float time;
-    public float attacktime = 5f;
-    public State state;
+    public float moveSpeed = 1;
+    private float waitTime = 0.3f;
+    private float attackSpeed = 0.0f;
 
-    public enum State
+    private void Start()
     {
-        Move,Stop
+        rb2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+       
     }
 
     // Update is called once per frame
     public void Update()
     {
-    float h = Input.GetAxisRaw("Horizontal");
-        // π´¡∂∞« -1, 0, 1
-        // 0¿Ã æ∆¥œ∏È ¿Ãµø«œ∞Ì¿÷¿Ω
-        //switch (h)
-        //{
-        //    case 0:
-        //        animator.SetInteger("state", 0);
-
-
-        //    case 1:
-        //        this.transform.localScale = new Vector3(h, 1, 1);
-        //        animator.SetInteger("state", 1);
-        //        Vector2 velocity = new Vector2(h * 1, 0);
-        //        Debug.Log(velocity);
-        //        KingAttack();
-        //        break;
-        //}
+        float h = Input.GetAxisRaw("Horizontal");
+        waitTime += Time.deltaTime;
         
-
-        if (h == 0f)
+        if (attackSpeed < waitTime)
         {
-            // ∏ÿ√Á¿÷¿Ω
-            Vector2 direction = new Vector2(-0.1f, 0);
-            this.transform.Translate(h * direction, 0);
-            animator.SetInteger("state", 0);
-            KingAttack();
+
+            if (h == 0f)
+            {
+                // ∏ÿ√Á¿÷¿Ω
+                animator.SetInteger("state", 0);
+                KingAttack();
+             
+            }
+
+            else
+
+            {
+                this.rb2D.velocity = new Vector2(h * moveSpeed, 0);
+                this.transform.localScale = new Vector3(h, 1, 1);
+                animator.SetInteger("state", 1);
+                KingAttack();
+                Debug.Log(this.rb2D.velocity);
+            }
+            
+
         }
-        else
-
-        {
-            Vector2 direction = new Vector2(0.1f, 0);
-            this.transform.Translate(h * direction, 0);
-            this.transform.localScale = new Vector3(h, 1, 1);
-            animator.SetInteger("state", 1);
-            Vector2 velocity = new Vector2(h * 1, 0);
-            Debug.Log(velocity);
-            KingAttack();
-
-        }
-       
-
+    }
         // ∏ÿ√Á = ¥ﬁ∑¡ / ∏ÿ√Áº≠ ∂ß∑¡
         // ¥ﬁ∑¡ = ∏ÿ√Á / ¥ﬁ∏Æ¥Ÿ ∏ÿ√Áº≠ ∂ß∑¡
         // ∂ß∑¡ = ∏ÿ√Á / ∏ÿ√ﬂ∞Ì ¥ﬁ∑¡
 
-
-
-    }
     public void KingAttack()
     {
+        bool isAttack = Input.GetKeyDown(KeyCode.Return);
         
-         bool isAttack = Input.GetKeyDown(KeyCode.Return);
-        
-                
-        if (isAttack) 
+        if (isAttack)
         {
-            
+            this.rb2D.velocity = new Vector2(0, 0);
             animator.SetInteger("state", 2);
             Debug.Log("∞¯∞›¿Ã ≥°≥µΩ¿¥œ¥Ÿ");
-            Action();
-
+            Debug.Log(this.rb2D.velocity);
+            attackSpeed = 0.3f;
             
+
         }
+        
+
 
     }
-    public void Action()
-    {
-        if (state == State.Move)
-        {
-            this.transform.localPosition = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y, this.transform.localPosition.z);
-            float xPos = Mathf.Clamp(this.transform.localPosition.x, this.transform.localPosition.y, this.transform.localPosition.z);
-            //this.transform.position = new Vector3(xPos, this.transform.position.y, this.transform.position.z);
-            state = State.Stop;
-        }
-    }
+   
     
 }
