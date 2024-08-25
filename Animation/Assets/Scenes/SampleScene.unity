@@ -158,6 +158,11 @@ MonoBehaviour:
   animator: {fileID: 358269918}
   rb2D: {fileID: 358269921}
   moveSpeed: 1
+  kingGo: {fileID: 358269916}
+  pigGo: {fileID: 359881288}
+  kingController: {fileID: 358269917}
+  pigContorller: {fileID: 359881293}
+  kingDamage: 10
 --- !u!95 &358269918
 Animator:
   serializedVersion: 5
@@ -240,7 +245,7 @@ Transform:
   m_GameObject: {fileID: 358269916}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8, y: -3.93, z: 0}
+  m_LocalPosition: {x: 1.31, y: -3.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -319,6 +324,8 @@ GameObject:
   - component: {fileID: 359881291}
   - component: {fileID: 359881290}
   - component: {fileID: 359881289}
+  - component: {fileID: 359881293}
+  - component: {fileID: 359881292}
   m_Layer: 0
   m_Name: Pig
   m_TagString: Untagged
@@ -387,7 +394,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1097365604, guid: f4fe875101470454c85f9b217999f101, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -408,12 +415,67 @@ Transform:
   m_GameObject: {fileID: 359881288}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.38, y: -4.13, z: 0}
+  m_LocalPosition: {x: 3.28, y: -4.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &359881292
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359881288}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.7974056, y: 0.7974056}
+  m_Direction: 0
+--- !u!114 &359881293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359881288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa9881c36cecf5c4682a7d7a8062ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 359881289}
+  Collider2D: {fileID: 359881292}
+  pigHp: 100
+  pigMaxHp: 100
+  kingGo: {fileID: 358269916}
+  kingController: {fileID: 358269917}
+  pigContorller: {fileID: 359881293}
+  isPigDead: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
